@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{EDC12251-684A-1AE0-35B0-4D1C2C1802BF}</ProjectGuid>
+    <ProjectGuid>{F5A6FA3E-8B38-BF84-8D4E-9219EF82DDCD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -73,9 +73,12 @@
     <Compile Include="Assets\scripts\Dragon\States\ReturnToPlayer.cs" />
     <Compile Include="Assets\scripts\Dragon\States\Wander.cs" />
     <Compile Include="Assets\scripts\Dragon\States\dragState.cs" />
+    <Compile Include="Assets\scripts\dragonFruitSpawner.cs" />
+    <Compile Include="Assets\scripts\flammable.cs" />
     <Compile Include="Assets\scripts\grabbable.cs" />
     <Compile Include="Assets\scripts\player\MagicStaff.cs" />
     <Compile Include="Assets\scripts\player\playerMove.cs" />
+    <Compile Include="Assets\scripts\potionMaking.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -611,34 +614,34 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Bridger/Documents/Unity/DragonPettingSimulator2020/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Bridger/Documents/GitHub/GIMM-400/DragonPettingSimulator2020_2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{BE843A3A-09DE-D637-C283-DF0114566CD2}</Project>
+      <Project>{3C275F2A-6086-B69D-D3EF-2513E5F9FEE4}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{FBFE795E-F26B-FF2A-41D8-2940ECCF36B8}</Project>
+      <Project>{AB8F9595-CD7A-BB2A-BE95-53DBCEA99378}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>

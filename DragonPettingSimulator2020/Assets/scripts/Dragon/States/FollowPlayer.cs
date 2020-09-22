@@ -11,23 +11,23 @@ public class FollowPlayer : dragState
     {
         //Debug.Log("following player");
         dragon.agent.SetDestination(dragon.player.transform.position);
-        dragon.agent.stoppingDistance = 8;
+        dragon.agent.stoppingDistance = 4; //change stopping distance to not get too close to player
     }
     public override void OnUpdate()
     {
-        dragon.agent.SetDestination(dragon.player.transform.position);
+        dragon.agent.SetDestination(dragon.player.transform.position); //follow player
         count++;
-        if (Vector3.Distance(dragon.player.transform.position, dragon.transform.position) > dragon.playerViewRange * 1.5f)
+        if (Vector3.Distance(dragon.player.transform.position, dragon.transform.position) > dragon.playerViewRange * 1.1f)
         {
-            dragon.changeState(new Wander(dragon));
+            dragon.changeState(new Wander(dragon)); //if player is too far, wander
         }
         if (Vector3.Distance(dragon.player.transform.position, dragon.transform.position) < dragon.playerViewRange && dragon.toyTime)
         {
-            dragon.changeState(new FollowToy(dragon));
+            dragon.changeState(new FollowToy(dragon)); //if player throws a toy, chase the toy
         }
-        if(count > 4000)
+        if(count > 2500)
         {
-            dragon.changeState(new Mad(dragon));
+            dragon.changeState(new Mad(dragon)); //if the player ignores the dragon, gets mad
         }
     }
     public override void OnExit()

@@ -21,20 +21,20 @@ public class Dragon : MonoBehaviour
     {
         fire.Stop();
         toyTime = false;
-        currentState = new Wander(this);
+        currentState = new Wander(this); //stops fire and the toy state, begins wandering
         //Debug.Log(currentState);
     }
     private void Update()
     {
         //Debug.Log(toyTime);
-        currentState.OnUpdate();
+        currentState.OnUpdate(); //run update behavior based on current state
     }
     public void changeState(dragState newState)
     {
-        currentState.OnExit();
+        currentState.OnExit(); //run exit function of state
 
-        currentState = newState;
+        currentState = newState; //change state
 
-        currentState.OnEnter();
+        currentState.OnEnter(); //run start function of state
     }
 }
