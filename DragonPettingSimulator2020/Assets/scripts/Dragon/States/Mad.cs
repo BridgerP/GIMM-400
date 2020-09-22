@@ -9,14 +9,15 @@ public class Mad : dragState
     public override void OnEnter()
     {
         Debug.Log("MAD");
-        dragon.fire.Play();
+        dragon.agent.stoppingDistance = 4f;
+        dragon.fire.Play(); //begin shooting fire
     }
     public override void OnUpdate()
     {
-        dragon.agent.SetDestination(dragon.player.transform.position);
+        dragon.agent.SetDestination(dragon.player.transform.position); //follows the player
     }
     public override void OnExit()
     {
-        dragon.fire.Stop();
+        dragon.fire.Stop(); //stop shooting fire
     }
 }

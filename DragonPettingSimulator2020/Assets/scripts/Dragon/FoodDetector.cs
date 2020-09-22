@@ -8,7 +8,7 @@ public class FoodDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Food"))
+        if (other.gameObject.CompareTag("Food"))//if object in radius is food, change state
         {
             Debug.Log("Food Seen");
             dragon.food = other.gameObject;

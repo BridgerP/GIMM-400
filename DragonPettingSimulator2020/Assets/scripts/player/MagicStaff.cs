@@ -93,6 +93,7 @@ public class MagicStaff : MonoBehaviour
     void grabSpellStart()
     {
         grabbableObject.GetComponent<grabbable>().grab(gameObject);
+        //Debug.Log(grabbableObject);
         grabbing = true;
         StartCoroutine(spellCountdown());
     }
@@ -117,10 +118,11 @@ public class MagicStaff : MonoBehaviour
         //set throwing force based on how long the button is held
         //Debug.Log(force);
         counter = 0;
-        if (force > 17) force = 17;
+        if (force > 12) force = 12;
         //limit the force max
         grabbableObject.GetComponent<grabbable>().unGrab(force, transform.forward);
-        if (grabbableObject.CompareTag("Toy") && Vector3.Distance(dragon.transform.position, transform.position) < 20)
+        //Debug.Log(grabbableObject);
+        if (grabbableObject.CompareTag("Toy"))
         {
             dragon.toyTime = true;
             dragon.toy = grabbableObject;

@@ -7,6 +7,8 @@ TagManager:
   - Water
   - Toy
   - Food
+  - Ingredient
+  - Fire
   layers:
   - Default
   - TransparentFX

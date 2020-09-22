@@ -9,13 +9,13 @@ public class FollowToy : dragState
     {
         //Debug.Log("Chasing Toy");
         dragon.toyTime = true;
-        dragon.agent.stoppingDistance = 1.5f;
+        dragon.agent.stoppingDistance = 1.5f; //changes stopping distance to get closer to toy
     }
     public override void OnUpdate()
     {
         //Debug.Log(dragon.toyTime);
         dragon.agent.SetDestination(dragon.toy.transform.position);
-        if(Vector3.Distance(dragon.toy.transform.position, dragon.gameObject.transform.position) < 2)
+        if(Vector3.Distance(dragon.toy.transform.position, dragon.gameObject.transform.position) < 2) //when the dragon is close enough, grab toy
         {
             dragon.toy.GetComponent<grabbable>().grab(dragon.gameObject);
             dragon.changeState(new ReturnToPlayer(dragon));
