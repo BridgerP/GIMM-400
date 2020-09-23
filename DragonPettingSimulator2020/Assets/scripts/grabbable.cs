@@ -16,12 +16,13 @@ public class grabbable : MonoBehaviour
         rb.isKinematic = true;//and can't interact with other objects
         if (parent.GetComponent<Dragon>())
         {
-            transform.localPosition = new Vector3(0.65f, 3.5f, 3.75f);
+            transform.localPosition = new Vector3(-0.065f, .001f, 0f);
         }
     }
     public void unGrab(float force, Vector3 dir)
     {   
         rb.isKinematic = false;
+        if (gameObject.CompareTag("Ingredient")) force *= 0.3f;
         rb.velocity = dir * force; //when thrown, sets direction and force from player
         transform.SetParent(null);
     }

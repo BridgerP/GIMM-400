@@ -6,9 +6,11 @@ using UnityEngine;
 public class FollowFood : dragState
 {
     int count;
+    bool foodGrabbed;
     public FollowFood(Dragon dragon) : base(dragon) { }
     public override void OnEnter()
     {
+        foodGrabbed = false;
         count = 0;
         dragon.agent.stoppingDistance = .3f;
         if(dragon.toyTime)

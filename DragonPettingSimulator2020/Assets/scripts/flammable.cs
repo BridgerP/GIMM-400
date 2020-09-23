@@ -29,6 +29,6 @@ public class flammable : MonoBehaviour
     private void Update()
     {
         if (flaming) count++;
-        if (count > 1000) Destroy(gameObject); //if flaming long enough, object destroyed
+        if (count > 1500) Destroy(gameObject); //if flaming long enough, object destroyed
     }
 }
