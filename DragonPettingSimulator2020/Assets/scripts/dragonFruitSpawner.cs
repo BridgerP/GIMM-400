@@ -17,7 +17,7 @@ public class dragonFruitSpawner : MonoBehaviour
     void Update()
     {
         count++;
-        if(count == 5000)
+        if(count == 7500)
         {
             Instantiate(dragonFruit, spawner.position, spawner.rotation); //spawn a new fruit every 5000 ticks
             count = 0;

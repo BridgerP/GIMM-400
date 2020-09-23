@@ -37,4 +37,12 @@ public class Dragon : MonoBehaviour
 
         currentState.OnEnter(); //run start function of state
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("SleepPotion"))
+        {
+            Destroy(collision.gameObject);
+            changeState(new Sleep(this));
+        }
+    }
 }
