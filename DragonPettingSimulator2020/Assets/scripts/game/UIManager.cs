@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject grass;
 
-    public int score;
+    public float score;
 
     bool paused;
     bool game;
@@ -73,10 +73,11 @@ public class UIManager : MonoBehaviour
         Debug.Log(Time.time);
         score += grass.transform.childCount * 10;
         score += health;
-        score /= ((int)Time.time) / 100;
+        score /= (Time.time) / 100;
         game = false;
         Debug.Log(score);
-        scoreTextW.text = "Score: " + score.ToString();
+        int intScore = (int)score;
+        scoreTextW.text = "Score: " + intScore.ToString();
         Time.timeScale = 0.25f;
         youWin.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
