@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     }
     void unpauseGame()
     {
+        p.rotSpeed = (mouseSensitivity.normalizedValue * 250) + 70;
         paused = false;
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
@@ -69,8 +70,10 @@ public class UIManager : MonoBehaviour
     }
     public void Win(int health)
     {
+        Debug.Log(Time.time);
         score += grass.transform.childCount * 10;
         score += health;
+        score /= ((int)Time.time) / 100;
         game = false;
         Debug.Log(score);
         scoreTextW.text = "Score: " + score.ToString();
