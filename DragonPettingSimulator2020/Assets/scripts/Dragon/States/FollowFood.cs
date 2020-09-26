@@ -28,7 +28,7 @@ public class FollowFood : dragState
             {
                 count++;
                 //Debug.Log(count);
-                if (count > 600)
+                if (count > 120)
                 {
                     GameObject.Destroy(dragon.food);
                     dragon.food = null;
@@ -37,7 +37,7 @@ public class FollowFood : dragState
                 }
             }
         }
-        else if(count < 599) dragon.changeState(new Mad(dragon));
+        else if(count < 120) dragon.changeState(new Mad(dragon));
     }
     public override void OnExit()
     {

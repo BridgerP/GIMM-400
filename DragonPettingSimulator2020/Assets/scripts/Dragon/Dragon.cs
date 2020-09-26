@@ -17,14 +17,17 @@ public class Dragon : MonoBehaviour
     public bool toyTime;
 
     public ParticleSystem fire;
+    public UIManager uI;
+    public playerFlammable playerFire;
     private void Start()
     {
+        playerFire = player.GetComponentInChildren<playerFlammable>();
         fire.Stop();
         toyTime = false;
         currentState = new Wander(this); //stops fire and the toy state, begins wandering
         //Debug.Log(currentState);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         //Debug.Log(toyTime);
         currentState.OnUpdate(); //run update behavior based on current state

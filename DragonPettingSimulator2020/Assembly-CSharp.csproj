@@ -74,13 +74,14 @@
     <Compile Include="Assets\scripts\Dragon\States\Sleep.cs" />
     <Compile Include="Assets\scripts\Dragon\States\Wander.cs" />
     <Compile Include="Assets\scripts\Dragon\States\dragState.cs" />
-    <Compile Include="Assets\scripts\dragonFruitSpawner.cs" />
-    <Compile Include="Assets\scripts\flammable.cs" />
-    <Compile Include="Assets\scripts\grabbable.cs" />
+    <Compile Include="Assets\scripts\game\UIManager.cs" />
+    <Compile Include="Assets\scripts\game\dragonFruitSpawner.cs" />
+    <Compile Include="Assets\scripts\game\potionMaking.cs" />
+    <Compile Include="Assets\scripts\other\flammable.cs" />
+    <Compile Include="Assets\scripts\other\grabbable.cs" />
     <Compile Include="Assets\scripts\player\MagicStaff.cs" />
     <Compile Include="Assets\scripts\player\playerFlammable.cs" />
     <Compile Include="Assets\scripts\player\playerMove.cs" />
-    <Compile Include="Assets\scripts\potionMaking.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
