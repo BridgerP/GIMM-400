@@ -99,6 +99,7 @@ public class MagicStaff : MonoBehaviour
     void waterSpellEnd()
     {
         ps.Stop();
+        playerFire.PutOutFire();
         StartCoroutine(spellCooldown(3));
     }
     void grabSpellStart()

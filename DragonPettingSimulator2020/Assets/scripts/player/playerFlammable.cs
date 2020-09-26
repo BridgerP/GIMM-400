@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerFlammable : MonoBehaviour
 {
     public int health;
+    public Transform healthBar;
     ParticleSystem ps;
     bool flaming;
 
@@ -27,6 +28,7 @@ public class playerFlammable : MonoBehaviour
         {
             uI.gameEnd();
         }
+        healthBar.localScale = new Vector3((float)health / 500, 1, 1);
     }
     private void OnParticleCollision(GameObject other)
     {
