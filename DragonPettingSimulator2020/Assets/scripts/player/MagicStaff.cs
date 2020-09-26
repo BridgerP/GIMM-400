@@ -8,6 +8,11 @@ public class MagicStaff : MonoBehaviour
     public float range;
     public LayerMask layerMask;
     private GameObject grabbableObject;
+    public playerFlammable playerFire;
+
+    public Renderer cube;
+    Color r;
+    Color b;
 
     public float throwForce;
 
@@ -21,6 +26,9 @@ public class MagicStaff : MonoBehaviour
     public Dragon dragon;
     private void Start()
     {
+        r = Color.red;
+        b = Color.blue;
+        cube.material.color = b;
         ps.Stop(); //Stop water particle system up front
         magic = true;
     }
@@ -47,6 +55,7 @@ public class MagicStaff : MonoBehaviour
         }
         if (magic)
         {
+            cube.material.color = b;
             if (Input.GetMouseButtonDown(0))
             {
                 if (grabbableObject) //if you have a potential object to grab
@@ -78,10 +87,12 @@ public class MagicStaff : MonoBehaviour
                 counter++;
             }
         }
+        else cube.material.color = r;
     }
     void waterSpellStart()
     {
         ps.Play();
+        playerFire.PutOutFire();
         magic = false;
         StartCoroutine(spellCountdown());
     }
@@ -113,6 +124,7 @@ public class MagicStaff : MonoBehaviour
     void grabSpellEnd()
     {
         magic = false;
+        StartCoroutine(spellCooldown(1));
         count = false;
         float force = counter * throwForce;
         //set throwing force based on how long the button is held
@@ -128,6 +140,5 @@ public class MagicStaff : MonoBehaviour
             dragon.toy = grabbableObject;
         }
         grabbableObject = null;
-        StartCoroutine(spellCooldown(1));
     }
 }

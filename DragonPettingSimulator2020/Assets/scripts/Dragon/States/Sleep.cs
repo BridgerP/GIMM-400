@@ -8,7 +8,7 @@ public class Sleep : dragState
     public override void OnEnter()
     {
         Debug.Log("Asleep!");
-        Time.timeScale = 0.5f;
+        dragon.uI.Win(dragon.playerFire.health);
         dragon.agent.SetDestination(dragon.transform.position);
     }
     public override void OnUpdate()

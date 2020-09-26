@@ -18,12 +18,12 @@ public class Wander : dragState
         count++;
         boredCount++;
         //Debug.Log(count);
-        if(count > 1000) //every 1000 ticks set a new destination
+        if(count > 120) //every 120 ticks set a new destination
         {
             RandomTarget();
             count = 0;
         }
-        if(boredCount == 2500) //if left alone too long, will spout fire
+        if(boredCount == 600) //if left alone too long, will spout fire
         {
             dragon.changeState(new Bored(dragon));
         }

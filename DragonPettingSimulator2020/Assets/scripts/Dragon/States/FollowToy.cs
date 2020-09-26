@@ -23,7 +23,7 @@ public class FollowToy : dragState
             dragon.toy.GetComponent<grabbable>().grab(dragon.gameObject);
             dragon.changeState(new ReturnToPlayer(dragon));
         }
-        if (count > 1500) dragon.changeState(new Mad(dragon));
+        if (count > 450) dragon.changeState(new Mad(dragon));
     }
     public override void OnExit()
     {

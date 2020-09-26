@@ -25,7 +25,7 @@ public class FollowPlayer : dragState
         {
             dragon.changeState(new FollowToy(dragon)); //if player throws a toy, chase the toy
         }
-        if(count > 2500)
+        if(count > 450)
         {
             dragon.changeState(new Mad(dragon)); //if the player ignores the dragon, gets mad
         }

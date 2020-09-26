@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class playerMove : MonoBehaviour
 {
@@ -15,11 +14,7 @@ public class playerMove : MonoBehaviour
     private Vector3 move;
     private Vector2 mouse;
     private float xRotation = 0f;
-    private void Start()
-    {
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-    }
-    void Update()
+    void FixedUpdate()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");

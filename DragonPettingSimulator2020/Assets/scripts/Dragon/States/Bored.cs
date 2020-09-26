@@ -20,12 +20,12 @@ public class Bored : dragState
         {
             dragon.changeState(new FollowToy(dragon));
         }
-        if (count > 1000)
+        if (count > 120)
         {
             RandomTarget();
             count = 0;
         }
-        if (madCount > 4000)
+        if (madCount > 420)
         {
             dragon.changeState(new Mad(dragon));
         }

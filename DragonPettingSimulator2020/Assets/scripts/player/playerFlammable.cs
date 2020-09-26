@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class playerFlammable : MonoBehaviour
 {
-    int health;
+    public int health;
     ParticleSystem ps;
     bool flaming;
+
+    public UIManager uI;
     private void Start()
     {
         flaming = false;
         ps = GetComponent<ParticleSystem>();
         ps.Stop();
-        health = 5000;
+        health = 500;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (flaming)
         {
@@ -23,7 +25,7 @@ public class playerFlammable : MonoBehaviour
         }
         if(health == 0)
         {
-            Time.timeScale = 0;
+            uI.gameEnd();
         }
     }
     private void OnParticleCollision(GameObject other)
@@ -38,5 +40,10 @@ public class playerFlammable : MonoBehaviour
             ps.Stop();
             flaming = false;
         }
+    }
+    public void PutOutFire()
+    {
+        ps.Stop();
+        flaming = false;
     }
 }
