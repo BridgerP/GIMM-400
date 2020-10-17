@@ -179,6 +179,14 @@ public class CarAgent : Agent
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Boundary"))
+        {
+            AddReward(-0.25f);
+        }
+    }
+
     private void Update()
     {
         AddReward(-0.1f);
