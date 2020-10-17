@@ -160,6 +160,7 @@ public class CarAgent : Agent
     {
         if (collider.CompareTag("HitBox"))
         {
+            Debug.Log("mnjkdfd");
             if (collider.gameObject.name.Equals(destination.gameObject.name))
             {
                 collider.gameObject.GetComponent<HitBox>().HasBeenHit();

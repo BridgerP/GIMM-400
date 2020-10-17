@@ -23,8 +23,4 @@ public class Track : MonoBehaviour
             }
         }
     }
-
-    private void Awake()
-    {
-    }
 }
