@@ -160,16 +160,15 @@ public class CarAgent : Agent
     {
         if (collider.CompareTag("HitBox"))
         {
-            HitBox hitBox = track.GetHitBoxFromCollider(collider);
-            if (hitBox.gameObject.name.Equals(destination.gameObject.name))
+            if (collider.gameObject.name.Equals(destination.gameObject.name))
             {
-                hitBox.HasBeenHit();
+                collider.gameObject.GetComponent<HitBox>().HasBeenHit();
                 currentTrackPos += 1;
                 UpdateDestination();
                 if (trainingMode)
                 {
                     float bonus1 = (reward / 2.0f) * (rigidbody.velocity.magnitude / speed);
-                    float bonus2 = (reward / 2.0f) * Vector3.Dot((hitBox.gameObject.transform.position - transform.position), transform.forward);
+                    float bonus2 = (reward / 2.0f) * Vector3.Dot((collider.gameObject.transform.position - transform.position), transform.forward);
                     AddReward(1 + bonus1 + bonus2);
                 }
             }

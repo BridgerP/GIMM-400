@@ -7,7 +7,6 @@ public class Track : MonoBehaviour
 
     public List<HitBox> hitBoxes;
     public bool isTraining = false;
-    private Dictionary<Collider, HitBox> hitBoxDictionary;
 
     public void ResetTrack()
     {
@@ -25,13 +24,7 @@ public class Track : MonoBehaviour
         }
     }
 
-    public HitBox GetHitBoxFromCollider(Collider collider)
-    {
-        return hitBoxDictionary[collider];
-    }
-
     private void Awake()
     {
-        hitBoxDictionary = new Dictionary<Collider, HitBox>();
     }
 }
