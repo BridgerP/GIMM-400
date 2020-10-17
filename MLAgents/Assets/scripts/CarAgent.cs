@@ -185,6 +185,7 @@ public class CarAgent : Agent
 
     private void Update()
     {
+        AddReward(-0.1f);
         if (destination != null)
         {
             Debug.DrawLine(transform.position, destination.gameObject.transform.position, Color.magenta);
@@ -195,11 +196,11 @@ public class CarAgent : Agent
     {
         if (trainingMode && destination != null)
         {
-            float bonus1 = (reward / 2.0f) * (rigidbody.velocity.magnitude / speed);
-            AddReward(bonus1);
+            // float bonus1 = (reward / 2.0f) * (rigidbody.velocity.magnitude / speed);
+            // AddReward(bonus1);
 
-            Transform tOfNextCheckPoint = destination.GetComponent<Transform>();
-            float distanceToAgent = Vector3.Distance(transform.position, tOfNextCheckPoint.position);
+            Transform toNext = destination.GetComponent<Transform>();
+            float distanceToAgent = Vector3.Distance(transform.position, toNext.position);
 
             curDist = distanceToAgent;
 
