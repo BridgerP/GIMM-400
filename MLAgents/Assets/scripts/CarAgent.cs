@@ -9,7 +9,7 @@ using UnityEngine.Scripting.APIUpdating;
 public class CarAgent : Agent
 {
     // Public vars
-    public Vector3 START_POS = new Vector3(352.9f, 22.37f, 189.74f);
+    public Transform startPos;
     public float accelerateForce = 2f;
     public float brakingForce = 0.5f;
     public float speed = 15f; // 5f;
@@ -131,7 +131,7 @@ public class CarAgent : Agent
 
     private void MoveToStartingPosition()
     {
-        transform.position = START_POS;
+        transform.position = startPos.position;
     }
 
     private void UpdateDestination()
