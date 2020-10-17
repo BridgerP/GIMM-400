@@ -177,8 +177,7 @@ public class CarAgent : Agent
     }
     private void OnCollisionEnter(Collision collision)
     {
-        // TODO: THIS MIGHT HAVE TO BE ADDING NEGATIVE FOR LEAVING TRACK INSTEAD OF HITTING BOUNDARY
-        if (trainingMode && collision.collider.CompareTag("boundary"))
+        if (trainingMode && collision.collider.CompareTag("Boundary"))
         {
             AddReward(-0.25f);
         }

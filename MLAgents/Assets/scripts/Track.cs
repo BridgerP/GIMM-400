@@ -33,6 +33,5 @@ public class Track : MonoBehaviour
     private void Awake()
     {
         hitBoxDictionary = new Dictionary<Collider, HitBox>();
-        hitBoxes = new List<HitBox>();
     }
 }
