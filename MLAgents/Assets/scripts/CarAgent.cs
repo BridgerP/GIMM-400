@@ -158,6 +158,10 @@ public class CarAgent : Agent
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (collider.CompareTag("Boundary"))
+        {
+            AddReward(-0.25f);
+        }
         if (collider.CompareTag("HitBox"))
         {
             if (collider.gameObject.name.Equals(destination.gameObject.name))
@@ -172,13 +176,6 @@ public class CarAgent : Agent
                     AddReward(1 + bonus1 + bonus2);
                 }
             }
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (trainingMode && collision.collider.CompareTag("Boundary"))
-        {
-            AddReward(-0.25f);
         }
     }
 
