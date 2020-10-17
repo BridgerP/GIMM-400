@@ -11,12 +11,23 @@ public class drive : MonoBehaviour
     public float speed;
     public float rotSpeed;
 
+    public int lap = 1;
+
     float velocity;
     float rotation;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         //rb.isKinematic = true;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "StartBox")
+        {
+            lap++;
+            GameManager.Instance.CheckForWin(lap, true);
+        }
     }
     void FixedUpdate()
     {
