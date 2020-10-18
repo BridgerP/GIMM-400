@@ -15,8 +15,7 @@ public class CarAgent : Agent
     public float speed = 15f; // 5f;
     public float turnSpeed = 150f;
     public bool trainingMode = true;
-    public float reward = .1f; // .02f;
-    public float offTrackValue = -.5f;
+    public float reward = 2f;
     public int currentTrackPos { get; private set; }
     public int lap = 1;
 
@@ -28,6 +27,7 @@ public class CarAgent : Agent
     new private Rigidbody rigidbody;
     private float smoothTurnChange = 0f;
     private bool frozen = false;
+    private bool isOffLevel = false;
     public override void Initialize()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -160,7 +160,7 @@ public class CarAgent : Agent
     {
         if (collider.CompareTag("Boundary"))
         {
-            AddReward(-0.25f);
+            AddReward(-0.02f);
         }
         if (collider.CompareTag("HitBox"))
         {
@@ -177,22 +177,38 @@ public class CarAgent : Agent
                 }
             }
         }
+        if(collider.CompareTag("Level"))
+        {
+            isOffLevel = false;
+        }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider collider)
     {
-        if (other.CompareTag("Boundary"))
+         if (collider.CompareTag("Boundary"))
         {
-            AddReward(-0.25f);
+            AddReward(-0.02f);
+        }
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        if(collider.CompareTag("Level"))
+        {
+            isOffLevel = true;
         }
     }
 
     private void Update()
     {
-        AddReward(-0.1f);
+        AddReward(-0.01f);
         if (destination != null)
         {
             Debug.DrawLine(transform.position, destination.gameObject.transform.position, Color.magenta);
+        }
+        if(isOffLevel)
+        {
+            AddReward(-0.25f);
         }
     }
 

@@ -7,6 +7,7 @@ TagManager:
   - HitBox
   - StartBox
   - Boundary
+  - Level
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,7 @@ public class HitBox : MonoBehaviour
     public void HasBeenHit()
     {
         wasHit = true;
-        material.SetColor("_Color", hitColour);
+        // material.SetColor("_Color", hitColour);
         gameObject.SetActive(false);
     }
 
@@ -22,18 +22,18 @@ public class HitBox : MonoBehaviour
     {
         wasHit = false;
         gameObject.SetActive(true);
-        material.SetColor("_Color", defaultColour);
+        // material.SetColor("_Color", defaultColour);
     }
 
     public void ToggleMesh(bool toggle)
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = toggle;
+        // gameObject.GetComponent<MeshRenderer>().enabled = toggle;
     }
 
     private void Awake()
     {
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        material = meshRenderer.material;
+        // MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        // material = meshRenderer.material;
         coll = gameObject.GetComponent<Collider>();
     }
 }
