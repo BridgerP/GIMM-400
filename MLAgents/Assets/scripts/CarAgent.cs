@@ -158,10 +158,6 @@ public class CarAgent : Agent
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Boundary"))
-        {
-            AddReward(-0.02f);
-        }
         if (collider.CompareTag("HitBox"))
         {
             if (collider.gameObject.name.Equals(destination.gameObject.name))
@@ -183,12 +179,20 @@ public class CarAgent : Agent
         }
     }
 
-    void OnTriggerStay(Collider collider)
+    void OnCollisionEnter(Collision coll)
     {
-         if (collider.CompareTag("Boundary"))
+        if (coll.collider.CompareTag("Boundary"))
         {
             AddReward(-0.02f);
         }
+    }
+
+    void OnTriggerStay(Collider collider)
+    {
+        //  if (collider.CompareTag("Boundary"))
+        // {
+        //     AddReward(-0.02f);
+        // }
     }
 
     void OnTriggerExit(Collider collider)

@@ -1,0 +1,29 @@
+{
+    "AICar": {
+        "checkpoints": [
+            {
+                "steps": 499872,
+                "file_path": "results\\carNew18\\AICar\\AICar-499872.nn",
+                "reward": null,
+                "creation_time": 1604088717.7732065
+            },
+            {
+                "steps": 938304,
+                "file_path": "results\\carNew18\\AICar\\AICar-938304.nn",
+                "reward": 43.98184213207828,
+                "creation_time": 1604089218.262458
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 938304,
+            "file_path": "results\\carNew18\\AICar.nn",
+            "reward": 43.98184213207828,
+            "creation_time": 1604089218.262458
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

@@ -9,7 +9,7 @@ public class HitBox : MonoBehaviour
     public Color hitColour = Color.red;
     public Collider coll;
     public bool wasHit { get; private set; }
-    private Material material;
+    // private Material material;
 
     public void HasBeenHit()
     {

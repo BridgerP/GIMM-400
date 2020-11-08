@@ -8,6 +8,7 @@ TagManager:
   - StartBox
   - Boundary
   - Level
+  - floor
   layers:
   - Default
   - TransparentFX

@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using Photon.Pun;
 
-public class drive : MonoBehaviour
+public class drive : MonoBehaviourPunCallbacks, IPunObservable
 {
+
+    [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
+    public static GameObject LocalPlayerInstance;
     Rigidbody rb;
 
     public float brakeSpeed;
@@ -15,6 +20,19 @@ public class drive : MonoBehaviour
 
     float velocity;
     float rotation;
+
+    void Awake()
+    {
+        // #Important
+            // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
+            if (photonView.IsMine)
+            {
+                drive.LocalPlayerInstance = this.gameObject;
+            }
+            // #Critical
+            // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
+            DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -69,4 +87,21 @@ public class drive : MonoBehaviour
         rb.velocity = transform.forward * velocity;
         transform.rotation = Quaternion.Euler(0, rotation, 0);
     }
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if(stream.IsWriting)
+            {
+                // we own this player; send others our data
+                // stream.SendNext(IsFiring);
+                // stream.SendNext(Health);
+            }
+            else
+            {
+                // network player, receive data
+                // this.IsFiring = (bool)stream.ReceiveNext();
+                // this.Health = (float)stream.ReceiveNext();
+            }
+        }
 }

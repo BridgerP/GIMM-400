@@ -1,0 +1,3 @@
+model_checkpoint_path: "AICar-938304.ckpt"
+all_model_checkpoint_paths: "AICar-499872.ckpt"
+all_model_checkpoint_paths: "AICar-938304.ckpt"

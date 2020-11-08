@@ -1,0 +1,23 @@
+{
+    "AICar": {
+        "checkpoints": [
+            {
+                "steps": 105216,
+                "file_path": "results\\carNew13\\AICar\\AICar-105216.nn",
+                "reward": null,
+                "creation_time": 1604083892.6024938
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 105216,
+            "file_path": "results\\carNew13\\AICar.nn",
+            "reward": null,
+            "creation_time": 1604083892.6024938
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
