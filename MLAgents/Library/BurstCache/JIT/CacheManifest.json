@@ -3,6 +3,7 @@
   "Assemblies": [
     {
       "FullName": "Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+<<<<<<< Updated upstream
       "LastWriteTime": "2020-10-16T20:08:50.4535591Z"
     },
     {
@@ -12,13 +13,44 @@
     {
       "FullName": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
       "LastWriteTime": "2019-12-12T06:59:36Z"
+=======
+      "LastWriteTime": "2020-11-15T23:08:42.5295186Z"
+    },
+    {
+      "FullName": "netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
+      "LastWriteTime": "2020-11-05T02:48:16Z"
+    },
+    {
+      "FullName": "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "LastWriteTime": "2020-11-05T02:48:16Z"
+    },
+    {
+      "FullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "LastWriteTime": "2020-11-05T02:53:18Z"
+    },
+    {
+      "FullName": "Unity.Barracuda.BurstBLAS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "LastWriteTime": "2020-11-15T23:08:46.1936012Z"
+    },
+    {
+      "FullName": "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "LastWriteTime": "2020-11-05T02:48:16Z"
+    },
+    {
+      "FullName": "Unity.Barracuda, Version=1.0.3.0, Culture=neutral, PublicKeyToken=null",
+      "LastWriteTime": "2020-11-15T23:08:45.2501979Z"
+>>>>>>> Stashed changes
     }
   ],
   "Functions": [
     {
       "FullName": "System.Int32 Unity.Burst.Intrinsics.X86::DoGetCSRTrampoline()",
       "ModuleOptionsHash": 8794384452606821980,
+<<<<<<< Updated upstream
       "ModuleHash": "b1582843cb88182a60f2c5a3d42387b2",
+=======
+      "ModuleHash": "a38857de62c2bd52378d5391a749ce3d",
+>>>>>>> Stashed changes
       "LinkName": "CDCA4A5193BE5947",
       "AssemblyDependencyIndices": [
         0,
@@ -29,13 +61,34 @@
     {
       "FullName": "System.Void Unity.Burst.Intrinsics.X86::DoSetCSRTrampoline(System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
+<<<<<<< Updated upstream
       "ModuleHash": "94f13eea47d08cba9a6d6da4d4b8f381",
+=======
+      "ModuleHash": "6379a7f3ce3634064076bac1dcee721f",
+>>>>>>> Stashed changes
       "LinkName": "801E9A000BB37B05",
       "AssemblyDependencyIndices": [
         0,
         1,
         2
       ]
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      "FullName": "System.Void Unity.Jobs.IJobParallelForExtensions/ParallelForJobStruct`1<Unity.Barracuda.UnsafeMatrixBlockMultiplyUnrolled8xhJob>::Execute(T&,System.IntPtr,System.IntPtr,Unity.Jobs.LowLevel.Unsafe.JobRanges&,System.Int32)",
+      "ModuleOptionsHash": 8794384452606821980,
+      "ModuleHash": "69e96cc0b086eda0b819972c007c7380",
+      "LinkName": "C1C6C1D457935913",
+      "AssemblyDependencyIndices": [
+        3,
+        4,
+        5,
+        1,
+        2,
+        6
+      ]
+>>>>>>> Stashed changes
     }
   ]
 }
