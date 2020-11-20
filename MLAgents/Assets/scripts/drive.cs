@@ -82,9 +82,9 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         }
 
         if (velocity > maxSpeed) velocity = 38;
-        if (velocity - Mathf.Abs(rb.velocity.magnitude) > 1) velocity = Mathf.Abs((velocity + rb.velocity.magnitude) / 2);
+        //if (velocity - Mathf.Abs(rb.velocity.magnitude) > 1) velocity = Mathf.Abs((velocity + rb.velocity.magnitude) / 2);
 
-        rb.velocity = transform.forward * velocity;
+        rb.velocity = (transform.forward * velocity) - transform.up;
         transform.rotation = Quaternion.Euler(0, rotation, 0);
     }
 
