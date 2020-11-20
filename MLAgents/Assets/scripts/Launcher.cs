@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -21,6 +22,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         [Tooltip("The UI Label to inform the user that the connection is in progress")]
         [SerializeField]
         private GameObject progressLabel;
+        [Tooltip("The UI Label to inform the user chosen colour")]
+        [SerializeField]
+        private Text colourLabel;
 
         #endregion
 
@@ -57,6 +61,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         /// </summary>
         void Start()
         {
+            PlayerPrefs.SetInt("Colour", 0);
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
         }
@@ -90,6 +95,26 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             pressedSolo = true;
             Connect();
+        }
+
+        public void PickColour(int col)
+        {
+            PlayerPrefs.SetInt("Colour", col);
+            switch(col)
+            {
+                case 0:
+                    colourLabel.text = "Blue";
+                    break;
+                case 1:
+                    colourLabel.text = "Pink";
+                    break;
+                case 2:
+                    colourLabel.text = "Purple";
+                    break;
+                case 3:
+                    colourLabel.text = "Orange";
+                    break;
+            }
         }
 
         #endregion
@@ -135,7 +160,6 @@ public class Launcher : MonoBehaviourPunCallbacks
             // #Critical: We only load if we are the first player
             if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                PlayerPrefs.SetInt("Colour", 0);
                 if(pressedSolo)
                 {
                     PhotonNetwork.LoadLevel("ML Assets");
@@ -145,18 +169,6 @@ public class Launcher : MonoBehaviourPunCallbacks
                     // #Critical: Load Room Level
                     PhotonNetwork.LoadLevel("MLMulti");
                 }
-            }
-            else if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
-            {
-                PlayerPrefs.SetInt("Colour", 1);
-            }
-            else if(PhotonNetwork.CurrentRoom.PlayerCount == 3)
-            {
-                PlayerPrefs.SetInt("Colour", 2);
-            }
-            else if(PhotonNetwork.CurrentRoom.PlayerCount == 4)
-            {
-                PlayerPrefs.SetInt("Colour", 3);
             }
             Debug.Log("OnJoinedRoom was called by PUN. We are now in a room.");
         }
