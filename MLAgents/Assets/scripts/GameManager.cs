@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static GameManager Instance;
 
-    [Tooltip("The prefab to use for representing the player")]
-    public GameObject playerPrefab;
+    [Tooltip("The prefabs to use for representing the player")]
+    public GameObject[] playerPrefabs;
+
+    public int test = 0;
 
     void Awake()
     {
@@ -23,22 +25,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Instance = this;
 
-            if(playerPrefab == null)
+            if (drive.LocalPlayerInstance == null)
             {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> player prefab", this);
+                Debug.LogFormat("Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                int colour = PlayerPrefs.GetInt("Colour");
+                PhotonNetwork.Instantiate(this.playerPrefabs[colour].name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);            
             }
             else
             {
-                if (drive.LocalPlayerInstance == null)
-                {
-                    Debug.LogFormat("Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
-                    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
-                }
-                else
-                {
-                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
-                }
+                Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
             }
         }
     }
@@ -86,6 +82,19 @@ public class GameManager : MonoBehaviourPunCallbacks
         else if(!isPlayer && lap > 3)
         {
             Debug.Log("Agent Won");
+        }
+    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.IsWriting)
+        {
+            // we own this player; send others our data
+            // stream.SendNext(IsFiring);
+        }
+        else
+        {
+            // network player, receive data
+            // this.IsFiring = (bool)stream.ReceiveNext();
         }
     }
 }

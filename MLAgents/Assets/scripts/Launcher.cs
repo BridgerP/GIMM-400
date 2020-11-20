@@ -135,6 +135,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             // #Critical: We only load if we are the first player
             if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
+                PlayerPrefs.SetInt("Colour", 0);
                 if(pressedSolo)
                 {
                     PhotonNetwork.LoadLevel("ML Assets");
@@ -144,6 +145,18 @@ public class Launcher : MonoBehaviourPunCallbacks
                     // #Critical: Load Room Level
                     PhotonNetwork.LoadLevel("MLMulti");
                 }
+            }
+            else if(PhotonNetwork.CurrentRoom.PlayerCount == 2)
+            {
+                PlayerPrefs.SetInt("Colour", 1);
+            }
+            else if(PhotonNetwork.CurrentRoom.PlayerCount == 3)
+            {
+                PlayerPrefs.SetInt("Colour", 2);
+            }
+            else if(PhotonNetwork.CurrentRoom.PlayerCount == 4)
+            {
+                PlayerPrefs.SetInt("Colour", 3);
             }
             Debug.Log("OnJoinedRoom was called by PUN. We are now in a room.");
         }

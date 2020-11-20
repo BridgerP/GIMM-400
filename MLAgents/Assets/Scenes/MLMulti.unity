@@ -30590,6 +30590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2094847337}
   - component: {fileID: 2094847336}
+  - component: {fileID: 2094847338}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30609,8 +30610,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc11168a12026b47a03cc2d25376677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7807885592822387075, guid: 32de5d3385b27c44ea447ad77dd649ec,
-    type: 3}
+  playerPrefabs:
+  - {fileID: 7807885592822387075, guid: 32de5d3385b27c44ea447ad77dd649ec, type: 3}
+  - {fileID: 642619807654783152, guid: 74857a5e863e0464180b5070389302d0, type: 3}
+  - {fileID: 8816117870831585289, guid: cd78ae1e2deb94d49ada0498549b34b6, type: 3}
+  - {fileID: 344648050870881487, guid: d1e95dfb44cd33a458c0a151b419e7e0, type: 3}
+  test: 0
 --- !u!4 &2094847337
 Transform:
   m_ObjectHideFlags: 0
@@ -30625,6 +30630,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094847338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094847335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 2094847336}
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2094999631
 GameObject:
   m_ObjectHideFlags: 0
