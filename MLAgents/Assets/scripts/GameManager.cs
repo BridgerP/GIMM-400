@@ -5,14 +5,12 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
 
     [Tooltip("The prefabs to use for representing the player")]
     public GameObject[] playerPrefabs;
-
-    public int test = 0;
 
     void Awake()
     {
@@ -82,19 +80,6 @@ public class GameManager : MonoBehaviourPunCallbacks, IPunObservable
         else if(!isPlayer && lap > 3)
         {
             Debug.Log("Agent Won");
-        }
-    }
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if(stream.IsWriting)
-        {
-            // we own this player; send others our data
-            // stream.SendNext(IsFiring);
-        }
-        else
-        {
-            // network player, receive data
-            // this.IsFiring = (bool)stream.ReceiveNext();
         }
     }
 }

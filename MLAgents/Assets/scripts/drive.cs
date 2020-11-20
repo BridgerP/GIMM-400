@@ -35,6 +35,16 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Start()
     {
+        CameraWork _cameraWork = this.gameObject.GetComponent<CameraWork>();
+
+        if(_cameraWork != null)
+        {
+            if(photonView.IsMine)
+            {
+                _cameraWork.OnStartFollowing();
+            }
+        }
+
         if(photonView.IsMine)
         {
             rb = GetComponent<Rigidbody>();

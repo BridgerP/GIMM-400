@@ -814,6 +814,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4555825633883028553, guid: 312f86d806250af44b11c422a9fe5267,
+        type: 3}
+      propertyPath: m_Text
+      value: Bad Mario Kart
+      objectReference: {fileID: 0}
     - target: {fileID: 4555825634045676191, guid: 312f86d806250af44b11c422a9fe5267,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
