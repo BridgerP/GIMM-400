@@ -75,7 +75,7 @@ public class CameraWork : MonoBehaviour
 
         // only follow is explicitly declared
         if (isFollowing) {
-            Follow ();
+            Cut();
         }
     }
 
