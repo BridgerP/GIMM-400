@@ -17,9 +17,11 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     public float rotSpeed;
 
     public int lap = 1;
+    public float[] startingPoints = new float[] {5.64f,2.46f,-0.64f,3.73f};
 
     float velocity;
     float rotation;
+    private int count;
 
     void Awake()
     {
@@ -29,9 +31,12 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         {
             drive.LocalPlayerInstance = this.gameObject;
         }
+        count = PhotonNetwork.CurrentRoom.PlayerCount;
+        Debug.Log(count);
         // #Critical
         // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
         DontDestroyOnLoad(this.gameObject);
+        
     }
     void Start()
     {
@@ -49,6 +54,9 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         {
             rb = GetComponent<Rigidbody>();
             //rb.isKinematic = true;
+            this.transform.position = new Vector3(-6.5f, 1f, startingPoints[count]);
+            rotation = 90;
+            //this.transform.rotation = Quaternion.Euler(0f,90f,0f);
         }
     }
 
