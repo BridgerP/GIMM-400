@@ -24268,7 +24268,7 @@ GameObject:
   - component: {fileID: 1579643036}
   m_Layer: 0
   m_Name: LapCompleteTrigger
-  m_TagString: Untagged
+  m_TagString: lapcomplete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28564,7 +28564,7 @@ GameObject:
   - component: {fileID: 1856634486}
   m_Layer: 0
   m_Name: HalfpointTrigger
-  m_TagString: Untagged
+  m_TagString: halfpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

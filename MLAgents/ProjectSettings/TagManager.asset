@@ -9,6 +9,9 @@ TagManager:
   - Boundary
   - Level
   - floor
+  - halfpoint
+  - lapcomplete
+  - racefinish
   layers:
   - Default
   - TransparentFX
