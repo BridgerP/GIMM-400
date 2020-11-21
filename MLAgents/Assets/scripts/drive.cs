@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class drive : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -15,6 +16,11 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     public float maxSpeed;
     public float speed;
     public float rotSpeed;
+
+    public GameObject halfTrig;
+    public GameObject lapTrig;
+    public GameObject raceFinish;
+    public GameObject WinScreen;
 
     public int lap = 1;
     public float[] startingPoints = new float[] {5.64f,2.46f,-0.64f,3.73f};
@@ -67,8 +73,24 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
             lap++;
             GameManager.Instance.CheckForWin(lap, true);
         }
+
+        if(other.tag == "halfpoint" && photonView.IsMine)
+        {
+            lapTrig.SetActive(true);
+            halfTrig.SetActive(false);
+        }
+
+        if(other.tag == "lapcomplete" && photonView.IsMine)
+        {
+            LapComplete.instance.callTrigger();
+        }
+
+        if(other.tag == "racefinish" && photonView.IsMine)
+        {
+            WinScreen.SetActive(true);
+        }
     }
-    void Update()
+    void FixedUpdate()
     {
         if(photonView.IsMine)
         {
