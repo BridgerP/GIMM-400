@@ -859,6 +859,11 @@ MonoBehaviour:
   speed: 0.3
   rotSpeed: 3
   lap: 1
+  startingPoints:
+  - 5.64
+  - 2.46
+  - -0.64
+  - 3.73
 --- !u!114 &7082628015202432506
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         {
             rb = GetComponent<Rigidbody>();
             //rb.isKinematic = true;
-            this.transform.position = new Vector3(-6.5f, 1f, startingPoints[count]);
+            this.transform.position = new Vector3(-6.5f, 1f, startingPoints[count - 1]);
             rotation = 90;
             //this.transform.rotation = Quaternion.Euler(0f,90f,0f);
         }
@@ -68,7 +68,7 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
             GameManager.Instance.CheckForWin(lap, true);
         }
     }
-    void FixedUpdate()
+    void Update()
     {
         if(photonView.IsMine)
         {

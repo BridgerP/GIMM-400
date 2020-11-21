@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 579000909254472088}
   - component: {fileID: 781882098108590262}
   - component: {fileID: 344648050870881480}
+  - component: {fileID: -4661957772459803006}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Player
@@ -149,6 +150,11 @@ MonoBehaviour:
   speed: 0.3
   rotSpeed: 3
   lap: 1
+  startingPoints:
+  - 5.64
+  - 2.46
+  - -0.64
+  - 3.73
 --- !u!114 &781882098108590262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +194,23 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &-4661957772459803006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344648050870881487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f79d4bf5f4c0540b7d40eaf865e6dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 7
+  height: 3
+  centerOffset: {x: 0, y: 0, z: 0}
+  followOnStart: 0
+  smoothSpeed: 0.125
 --- !u!1 &709445861923780492
 GameObject:
   m_ObjectHideFlags: 0
