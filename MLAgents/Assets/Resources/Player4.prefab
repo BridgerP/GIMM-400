@@ -145,10 +145,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06084d4d89160d468d0585eee29bb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
   brakeSpeed: 0.03
   maxSpeed: 50
   speed: 0.3
   rotSpeed: 3
+  halfTrig: {fileID: 0}
+  lapTrig: {fileID: 0}
+  raceFinish: {fileID: 0}
+  WinScreen: {fileID: 0}
+  LoseScreen: {fileID: 0}
   lap: 1
   startingPoints:
   - 5.64

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine.UI;
+using ExitGames.Client.Photon;
 
-public class drive : MonoBehaviourPunCallbacks, IPunObservable
+public class drive : MonoBehaviourPunCallbacks, IPunObservable, IOnEventCallback
 {
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
@@ -34,6 +36,8 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     private bool timerStarted = false;
     bool hasLost;
     private bool hasWon;
+
+    public const byte HasWonEventCode = 1;
 
     void Awake()
     {
@@ -108,7 +112,10 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         {
             hasLost = true; // this is to send to other players to know if they've lost.
             hasWon = true; // i've won so the lose screen won't show
-            WinScreen.SetActive(true);     
+            // RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
+            // PhotonNetwork.RaiseEvent(HasWonEventCode, hasWon, raiseEventOptions, SendOptions.SendReliable);
+            //WinScreen.SetActive(true);   
+            EndRaceEvent();  
         }
     }
 
@@ -168,11 +175,11 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
                 StartCoroutine("Timer");
             }
         }
-        if(photonView.IsMine && hasLost && !hasWon)
-        {
-            canDrive = false;
-            LoseScreen.SetActive(true);
-        }
+        // if(photonView.IsMine && hasLost && !hasWon)
+        // {
+        //     canDrive = false;
+        //     LoseScreen.SetActive(true);
+        // }
     }
 
     private IEnumerator Timer()
@@ -190,20 +197,59 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         timerText.text = "";
     }
 
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if(stream.IsWriting)
+        // if(stream.IsWriting)
+        // {
+        //     // we own this player; send others our data
+        //     // stream.SendNext(IsFiring);
+        //     //stream.SendNext(hasLost); // if I've won; send to other players
+        // }
+        // else
+        // {
+        //     // network player, receive data
+        //     // this.IsFiring = (bool)stream.ReceiveNext();
+        //     //this.hasLost = (bool)stream.ReceiveNext(); // if another player has won, I've lost
+        // }
+    }
+
+    // private void OnEnable()
+    // {
+    //     PhotonNetwork.AddCallbackTarget(this);
+    // }
+
+    // private void OnDisable()
+    // {
+    //     PhotonNetwork.RemoveCallbackTarget(this);
+    // }
+
+    // public void OnEvent(EventData photonEvent)
+    // {
+    //     byte eventCode = photonEvent.Code;
+    //     if (eventCode == HasWonEventCode)
+    //     {
+    //         object data = (object)photonEvent.CustomData;
+    //         hasLost = (bool)data;
+    //         if(hasLost)
+    //         {
+    //             canDrive = false;
+    //             LoseScreen.SetActive(true);
+    //         }
+    //     }
+    // }
+
+    private void EndRaceEvent()
+    {
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        PhotonNetwork.RaiseEvent(1, null, raiseEventOptions, SendOptions.SendReliable);
+    }
+    public void OnEvent(EventData photonEvent)
+    {
+        if(photonEvent.Code == 1)
         {
-            // we own this player; send others our data
-            // stream.SendNext(IsFiring);
-            stream.SendNext(hasLost); // if I've won; send to other players
-        }
-        else
-        {
-            // network player, receive data
-            // this.IsFiring = (bool)stream.ReceiveNext();
-            this.hasLost = (bool)stream.ReceiveNext(); // if another player has won, I've lost
+            if (hasWon) WinScreen.SetActive(true);
+            else LoseScreen.SetActive(true);
+            canDrive = false;
         }
     }
 }
