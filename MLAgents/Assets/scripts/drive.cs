@@ -115,7 +115,7 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable, IOnEventCallback
             // RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
             // PhotonNetwork.RaiseEvent(HasWonEventCode, hasWon, raiseEventOptions, SendOptions.SendReliable);
             //WinScreen.SetActive(true);   
-            EndRaceEvent();  
+            EndRaceEvent();
         }
     }
 

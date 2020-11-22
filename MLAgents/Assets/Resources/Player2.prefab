@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
   brakeSpeed: 0.03
-  maxSpeed: 30
+  maxSpeed: 50
   speed: 0.3
   rotSpeed: 2
   halfTrig: {fileID: 0}
