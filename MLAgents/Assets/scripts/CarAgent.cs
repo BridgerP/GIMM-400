@@ -147,7 +147,7 @@ public class CarAgent : Agent
             lap += 1;
             if (!trainingMode)
             {
-                GameManager.Instance.CheckForWin(lap, false);
+               // GameManager.Instance.CheckForWin(lap, false);
             }
         }
         else

@@ -36,7 +36,7 @@ public class LapComplete : MonoBehaviour
     public void callTrigger()
     {
         LapsDone += 1;
-
+        AudioManager.Instance.PlayLapSound();
         RawTime = PlayerPrefs.GetFloat("RawTime");
 
         if (LapTimeManager.RawTime <= RawTime)

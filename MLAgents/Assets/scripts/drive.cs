@@ -32,7 +32,8 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     private int count;
     public bool canDrive {get; private set;}
     private bool timerStarted = false;
-    private bool hasLost;
+    bool hasLost;
+    private bool hasWon;
 
     void Awake()
     {
@@ -63,22 +64,25 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
 
         if(photonView.IsMine)
         {
+            hasWon = false;
+            hasLost = false;
             rb = GetComponent<Rigidbody>();
             //rb.isKinematic = true;
             this.transform.position = new Vector3(-6.5f, 1f, startingPoints[count - 1]);
             rotation = 90;
             this.transform.rotation = Quaternion.Euler(0f,90f,0f);
+            halfTrig = GameObject.Find("HalfpointTrigger"); // use this to connect all the pieces
+            lapTrig = GameObject.Find("LapCompleteTrigger"); // use this to connect all the pieces
+            lapTrig.SetActive(false);
+            raceFinish = GameObject.Find("RaceFinishTrigger"); // use this to connect all the pieces
+            raceFinish.SetActive(false);
+            WinScreen = GameObject.Find("WinScreen"); // use this to connect all the pieces
+            WinScreen.SetActive(false);
+            LoseScreen = GameObject.Find("LoseScreen"); // use this to connect all the pieces
+            LoseScreen.SetActive(false);
+            GameObject go = GameObject.Find("TimerText"); // use this to connect all the pieces
+            timerText = go.GetComponent<Text>();
         }
-
-        halfTrig = GameObject.Find("HalfpointTrigger"); // use this to connect all the pieces
-        lapTrig = GameObject.Find("LapCompleteTrigger"); // use this to connect all the pieces
-        lapTrig.SetActive(false);
-        raceFinish = GameObject.Find("RaceFinishTrigger"); // use this to connect all the pieces
-        raceFinish.SetActive(false);
-        WinScreen = GameObject.Find("WinScreen"); // use this to connect all the pieces
-        WinScreen.SetActive(false);
-        LoseScreen = GameObject.Find("LoseScreen"); // use this to connect all the pieces
-        LoseScreen.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -102,9 +106,16 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
 
         if(other.tag == "racefinish" && photonView.IsMine)
         {
-            WinScreen.SetActive(true);
-            canDrive = false;
+            hasLost = true; // this is to send to other players to know if they've lost.
+            hasWon = true; // i've won so the lose screen won't show
+            WinScreen.SetActive(true);     
         }
+    }
+
+    public void ResetBools()
+    {
+        hasWon = false;
+        hasLost = false;
     }
 
     void Update()
@@ -151,13 +162,13 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         }
         if(!timerStarted && photonView.IsMine)
         {
-            if(PhotonNetwork.CurrentRoom.PlayerCount == 3)
+            if(PhotonNetwork.CurrentRoom.PlayerCount == 2) // TODO: CHANGE TO 3
             {
                 timerStarted = true;
                 StartCoroutine("Timer");
             }
         }
-        if(photonView.IsMine && hasLost)
+        if(photonView.IsMine && hasLost && !hasWon)
         {
             canDrive = false;
             LoseScreen.SetActive(true);
@@ -175,6 +186,8 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         timerText.text = "GO!";
         AudioManager.Instance.PlayStartSound();
         canDrive = true;
+        yield return new WaitForSeconds(1.0f);
+        timerText.text = "";
     }
 
 
@@ -184,13 +197,13 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         {
             // we own this player; send others our data
             // stream.SendNext(IsFiring);
-            stream.SendNext(LapComplete.instance.LapsDone); // send to other players what lap I'm on
+            stream.SendNext(hasLost); // if I've won; send to other players
         }
         else
         {
             // network player, receive data
             // this.IsFiring = (bool)stream.ReceiveNext();
-            this.hasLost = (int)stream.ReceiveNext() >= 2; // if another player has done enough laps, I've lost
+            this.hasLost = (bool)stream.ReceiveNext(); // if another player has won, I've lost
         }
     }
 }

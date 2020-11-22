@@ -67,19 +67,20 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
+        drive.LocalPlayerInstance.GetComponent<drive>().ResetBools();
         PhotonNetwork.LeaveRoom();
     }
 
-    public void CheckForWin(int lap, bool isPlayer)
-    {
-        // definitely needs refining, at this point you could just go backwards twice and win lol
-        if(isPlayer && lap > 3)
-        {
-            Debug.Log("Player Won");
-        }
-        else if(!isPlayer && lap > 3)
-        {
-            Debug.Log("Agent Won");
-        }
-    }
+    // public void CheckForWin(int lap, bool isPlayer)
+    // {
+    //     // definitely needs refining, at this point you could just go backwards twice and win lol
+    //     if(isPlayer && lap > 3)
+    //     {
+    //         Debug.Log("Player Won");
+    //     }
+    //     else if(!isPlayer && lap > 3)
+    //     {
+    //         Debug.Log("Agent Won");
+    //     }
+    // }
 }

@@ -22,6 +22,10 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        else if(Instance != this)
+        {
+            Destroy(this);
+        }
     }
 
     public void PlayLapSound()
