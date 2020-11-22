@@ -169,7 +169,7 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable, IOnEventCallback
         }
         if(!timerStarted && photonView.IsMine)
         {
-            if(PhotonNetwork.CurrentRoom.PlayerCount == 2) // TODO: CHANGE TO 3
+            if(PhotonNetwork.CurrentRoom.PlayerCount == 3 || PlayerPrefs.GetInt("IsSolo") == 1)
             {
                 timerStarted = true;
                 StartCoroutine("Timer");

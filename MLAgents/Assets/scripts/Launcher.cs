@@ -162,10 +162,12 @@ public class Launcher : MonoBehaviourPunCallbacks
             {
                 if(pressedSolo)
                 {
+                    PlayerPrefs.SetInt("IsSolo", 1);
                     PhotonNetwork.LoadLevel("ML Assets");
                 }
                 else
                 {
+                    PlayerPrefs.SetInt("IsSolo", 0);
                     // #Critical: Load Room Level
                     PhotonNetwork.LoadLevel("MLMulti");
                 }
