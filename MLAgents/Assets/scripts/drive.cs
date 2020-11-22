@@ -11,6 +11,7 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
     Rigidbody rb;
+    public Text timerText;
 
     public float brakeSpeed;
     public float maxSpeed;
@@ -21,6 +22,7 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject lapTrig;
     public GameObject raceFinish;
     public GameObject WinScreen;
+    public GameObject LoseScreen;
 
     public int lap = 1;
     public float[] startingPoints = new float[] {5.64f,2.46f,-0.64f,3.73f};
@@ -28,6 +30,9 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
     float velocity;
     float rotation;
     private int count;
+    public bool canDrive {get; private set;}
+    private bool timerStarted = false;
+    private bool hasLost;
 
     void Awake()
     {
@@ -62,17 +67,27 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
             //rb.isKinematic = true;
             this.transform.position = new Vector3(-6.5f, 1f, startingPoints[count - 1]);
             rotation = 90;
-            //this.transform.rotation = Quaternion.Euler(0f,90f,0f);
+            this.transform.rotation = Quaternion.Euler(0f,90f,0f);
         }
+
+        halfTrig = GameObject.Find("HalfpointTrigger"); // use this to connect all the pieces
+        lapTrig = GameObject.Find("LapCompleteTrigger"); // use this to connect all the pieces
+        lapTrig.SetActive(false);
+        raceFinish = GameObject.Find("RaceFinishTrigger"); // use this to connect all the pieces
+        raceFinish.SetActive(false);
+        WinScreen = GameObject.Find("WinScreen"); // use this to connect all the pieces
+        WinScreen.SetActive(false);
+        LoseScreen = GameObject.Find("LoseScreen"); // use this to connect all the pieces
+        LoseScreen.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "StartBox" && photonView.IsMine)
-        {
-            lap++;
-            GameManager.Instance.CheckForWin(lap, true);
-        }
+        // if(other.tag == "StartBox" && photonView.IsMine)
+        // {
+        //     lap++;
+        //     GameManager.Instance.CheckForWin(lap, true);
+        // }
 
         if(other.tag == "halfpoint" && photonView.IsMine)
         {
@@ -88,11 +103,13 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         if(other.tag == "racefinish" && photonView.IsMine)
         {
             WinScreen.SetActive(true);
+            canDrive = false;
         }
     }
-    void FixedUpdate()
+
+    void Update()
     {
-        if(photonView.IsMine)
+        if(photonView.IsMine && canDrive)
         {
             if (Input.GetKey(KeyCode.S) && velocity > 10) velocity /= 1 + brakeSpeed;
             else if (Input.GetKey(KeyCode.S) && velocity > 2) velocity /= 1 + brakeSpeed * 1.5f;
@@ -132,6 +149,32 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
             rb.velocity = (transform.forward * velocity) - transform.up;
             transform.rotation = Quaternion.Euler(0, rotation, 0);
         }
+        if(!timerStarted && photonView.IsMine)
+        {
+            if(PhotonNetwork.CurrentRoom.PlayerCount == 3)
+            {
+                timerStarted = true;
+                StartCoroutine("Timer");
+            }
+        }
+        if(photonView.IsMine && hasLost)
+        {
+            canDrive = false;
+            LoseScreen.SetActive(true);
+        }
+    }
+
+    private IEnumerator Timer()
+    {
+        timerText.text = "3";
+        yield return new WaitForSeconds(1.0f);
+        timerText.text = "2";
+        yield return new WaitForSeconds(1.0f);
+        timerText.text = "1";
+        yield return new WaitForSeconds(1.0f);
+        timerText.text = "GO!";
+        AudioManager.Instance.PlayStartSound();
+        canDrive = true;
     }
 
 
@@ -141,13 +184,13 @@ public class drive : MonoBehaviourPunCallbacks, IPunObservable
         {
             // we own this player; send others our data
             // stream.SendNext(IsFiring);
-            //stream.SendNext(Health);
+            stream.SendNext(LapComplete.instance.LapsDone); // send to other players what lap I'm on
         }
         else
         {
             // network player, receive data
             // this.IsFiring = (bool)stream.ReceiveNext();
-            // this.Health = (float)stream.ReceiveNext();
+            this.hasLost = (int)stream.ReceiveNext() >= 2; // if another player has done enough laps, I've lost
         }
     }
 }

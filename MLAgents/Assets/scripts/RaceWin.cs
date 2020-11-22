@@ -10,6 +10,6 @@ public class RaceWin : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter()
     {
-        WinScreen.SetActive(true);
+        //WinScreen.SetActive(true);
     }
 }
