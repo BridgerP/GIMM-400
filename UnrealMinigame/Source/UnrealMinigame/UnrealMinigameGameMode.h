@@ -13,6 +13,19 @@ class AUnrealMinigameGameMode : public AGameModeBase
 
 public:
 	AUnrealMinigameGameMode();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+protected:
+	/** Widget class to use for HUD screen*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Widget", meta = (BlueprintProtected = true))
+	TSubclassOf<class UUserWidget> HUDWidgetClass;
+
+	/** The instance of the HUD Widget class*/
+	UPROPERTY(BlueprintReadOnly, Category = "Widget")
+	class UUserWidget* CurrentWidget;
 };
 
 

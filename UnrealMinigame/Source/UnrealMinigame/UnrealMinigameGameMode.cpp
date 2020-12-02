@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "UnrealMinigameGameMode.h"
-#include "UnrealMinigameHUD.h"
+#include "Blueprint/UserWidget.h"
 #include "UnrealMinigameCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
@@ -13,5 +13,21 @@ AUnrealMinigameGameMode::AUnrealMinigameGameMode()
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
 	// use our custom HUD class
-	HUDClass = AUnrealMinigameHUD::StaticClass();
+	//HUDClass = AUnrealMinigameHUD::StaticClass();
+}
+
+// Called when the game starts or when spawned
+void AUnrealMinigameGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Set Material UI to viewport
+	if (HUDWidgetClass != nullptr)
+	{
+		CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), HUDWidgetClass);
+		if (CurrentWidget != nullptr)
+		{
+			CurrentWidget->AddToViewport();
+		}
+	}
 }
