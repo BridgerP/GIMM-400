@@ -3,8 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Materials/MaterialInstance.h"
+#include "Containers/Array.h"
 #include "GameFramework/Character.h"
 #include "UnrealMinigameCharacter.generated.h"
+
 
 class UInputComponent;
 
@@ -52,6 +55,8 @@ protected:
 	virtual void BeginPlay();
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mats")
+	TArray<UMaterialInstance*> mats;
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
@@ -83,7 +88,7 @@ public:
 protected:
 	
 	/** Fires a projectile. */
-	void OnFire();
+	//void OnFire();
 
 	/** Resets HMD orientation and position in VR. */
 	void OnResetVR();

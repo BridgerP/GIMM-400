@@ -118,7 +118,7 @@ void AUnrealMinigameCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AUnrealMinigameCharacter::OnFire);
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AUnrealMinigameCharacter::OnFire);
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);
@@ -138,7 +138,7 @@ void AUnrealMinigameCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AUnrealMinigameCharacter::LookUpAtRate);
 }
 
-void AUnrealMinigameCharacter::OnFire()
+/*void AUnrealMinigameCharacter::OnFire()
 {
 	// try and fire a projectile
 	if (ProjectileClass != NULL)
@@ -184,7 +184,7 @@ void AUnrealMinigameCharacter::OnFire()
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
 	}
-}
+}*/
 
 void AUnrealMinigameCharacter::OnResetVR()
 {
@@ -197,10 +197,10 @@ void AUnrealMinigameCharacter::BeginTouch(const ETouchIndex::Type FingerIndex, c
 	{
 		return;
 	}
-	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
+	/*if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
 	{
 		OnFire();
-	}
+	}*/
 	TouchItem.bIsPressed = true;
 	TouchItem.FingerIndex = FingerIndex;
 	TouchItem.Location = Location;
